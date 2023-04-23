@@ -98,10 +98,12 @@ function script() {
         `,00</h2>`;
       listaProdutos.classList.remove("scale-out-top");
     }, 600);
+    saveState();
   }
 
   function saveState() {
-    localStorage.setItem("listaProdutos", listaProdutos.innerHTML);
+  
+    setTimeout(()=>{localStorage.setItem("listaProdutos", listaProdutos.innerHTML)}, 601);
     localStorage.setItem("listArray", JSON.stringify(items));
     localStorage.setItem("total", soma);
   }
@@ -110,16 +112,23 @@ function script() {
     listaProdutos.innerHTML = localStorage.getItem("listaProdutos");
     soma = localStorage.getItem("total");
     lastItems = JSON.parse(localStorage.getItem("listArray"));
-    if(lastItems!=0){
+    if(lastItems!=null){
     for (let index = 0; index < lastItems.length; index++) {
       items.push(lastItems[index]);
     }
     }
+    if(soma!=null){
     total.innerHTML =
       ` 
     <h1>Total</h1>
    <h2>R$` +
       soma +
       `</h2>`;
+    }else{
+      total.innerHTML =
+      ` 
+    <h1>Total</h1>
+    <h2>R$0,00</h2>`;
+    }
   }
 } //Dom prepare
