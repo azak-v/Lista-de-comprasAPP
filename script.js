@@ -110,8 +110,10 @@ function script() {
     listaProdutos.innerHTML = localStorage.getItem("listaProdutos");
     soma = localStorage.getItem("total");
     lastItems = JSON.parse(localStorage.getItem("listArray"));
+    if(lastItems!=0){
     for (let index = 0; index < lastItems.length; index++) {
       items.push(lastItems[index]);
+    }
     }
     total.innerHTML =
       ` 
